@@ -1,7 +1,6 @@
 package com.books.management.booksmanagement.validator;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -11,8 +10,8 @@ import com.books.management.booksmanagement.model.entity.BookManagement;
 @Service
 public class BookManagementValidator {
 
-    public void validateBookIdAlreadyBorrow(List<BookManagement> bookManagementFind) throws Exception {
-        if (!Objects.nonNull(bookManagementFind)) {
+    public void validateBookIdAlreadyBorrow(Optional<BookManagement> bookManagementFind) throws Exception {
+        if (bookManagementFind.isPresent()) {
             throw new NotProcessException("Book is Already Borrowed");
         }
     }

@@ -39,9 +39,9 @@ public class BookManagementServiceImpl implements BookManagementService {
     public ResponseData borrowBookService(BookManagementRequest request) throws Exception {
 
         // Cek Data Buku dipinjam atau sudah selesai where book_id and status
-        // List<BookManagement> bookManagementFind =
-        // bookManagementRepository.findByBookIdAndStatus(request.getBookId());
-        // bookManagementValidator.validateBookIdAlreadyBorrow(bookManagementFind);
+        Optional<BookManagement> bookManagementFind = bookManagementRepository
+                .findByBookIdAndStatus(request.getBookId());
+        bookManagementValidator.validateBookIdAlreadyBorrow(bookManagementFind);
 
         Optional<Book> bookFind = bookRepository.findById(request.getBookId());
         Optional<User> userFind = userRepository.findById(request.getUserId());
